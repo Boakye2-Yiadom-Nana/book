@@ -1,0 +1,27 @@
+<div class="review-show-container">
+  <!-- Success notice -->
+  <% if notice %>
+    <div class="notice">
+      <p><%= notice %></p>
+    </div>
+  <% end %>
+
+  <!-- Review card -->
+  <div class="review-card">
+    <div class="review-content">
+      <%= render @review %>
+    </div>
+  </div>
+
+  <!-- Actions section -->
+  <div class="actions-section">
+    <div class="action-links">
+      <%= link_to "Edit this review", edit_review_path(@review), class: "action-link edit-link" %>
+      <div class="action-separator"></div>
+      <%= link_to "Back to reviews", reviews_path, class: "action-link back-link" %>
+    </div>
+    <%= link_to "Destroy this review", review_path(@review),
+        data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },
+        class: 'btn-delete' %>
+  </div>
+</div>

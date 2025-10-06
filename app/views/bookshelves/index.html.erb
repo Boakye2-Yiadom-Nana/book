@@ -1,0 +1,22 @@
+<% content_for :title, "Bookshelves" %>
+
+<h1 class="bookshelves-heading">Bookshelves</h1>
+
+<% if notice.present? %>
+  <p class="bookshelves-notice"><%= notice %></p>
+<% end %>
+
+<div id="bookshelves" class="bookshelf-list">
+  <% @bookshelves.each do |bookshelf| %>
+    <div class="bookshelf-wrapper">
+      <%= render bookshelf %>
+      <p class="bookshelf-action">
+        <%= link_to "Show this bookshelf", bookshelf, class: "btn-link" %>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+<div class="new-bookshelf-link">
+  <%= link_to "➕ New bookshelf", new_bookshelf_path, class: "btn-primary" %>
+</div>

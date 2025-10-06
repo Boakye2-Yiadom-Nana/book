@@ -1,0 +1,22 @@
+<div id="<%= dom_id review %>">
+  <div class="review-field">
+    <strong class="field-label">📚 Bookshelf:</strong>
+    <span class="field-value"><%= review.bookshelf.title %></span>
+  </div>
+
+  <div class="review-field content-field">
+    <strong class="field-label">📝 Content:</strong>
+    <span class="field-value"><%= review.content %></span>
+  </div>
+
+  <div class="review-field rating-field">
+    <strong class="field-label">⭐ Rating:</strong>
+    <span class="field-value rating-display">
+      <span class="rating-stars">
+        <% review.rating.times do %>⭐<% end %>
+        <% (5 - review.rating).times do %>☆<% end %>
+      </span>
+      <span class="rating-text"><%= review.rating %>/5</span>
+    </span>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="review-form-container">
+  <h1 class="form-title">Write Your Review</h1>
+  
+  <%= form_with(model: review) do |form| %>
+    <% if review.errors.any? %>
+      <div class="error-container">
+        <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+        <ul>
+          <% review.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!-- Bookshelf dropdown -->
+    <div class="form-field bookshelf-field">
+      <%= form.label :bookshelf_id, "Select Bookshelf" %>
+      <%= form.collection_select :bookshelf_id, Bookshelf.all, :id, :title, 
+          { prompt: "Choose a bookshelf" } %>
+    </div>
+
+    <!-- Review content -->
+    <div class="form-field content-field">
+      <%= form.label :content %>
+      <%= form.text_area :content, placeholder: "Share your thoughts about this book..." %>
+    </div>
+
+    <!-- Rating -->
+    <div class="form-field rating-field">
+      <%= form.label :rating %>
+      <%= form.number_field :rating, in: 1..5, placeholder: "5" %>
+      <div class="rating-helper">
+        <span class="stars">⭐⭐⭐⭐⭐</span>
+        <span>Rate from 1 to 5 stars</span>
+      </div>
+    </div>
+
+    <!-- Submit button -->
+    <div class="submit-container">
+      <%= form.submit "Submit Review", class: "submit-btn" %>
+    </div>
+  <% end %>
+</div>

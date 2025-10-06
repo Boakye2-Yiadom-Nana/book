@@ -1,0 +1,21 @@
+<div class="new-review-container">
+  <!-- Page header -->
+  <div class="page-header">
+    <h1 class="page-title">New Review</h1>
+  </div>
+
+  <!-- Form container -->
+  <div class="form-container">
+    <%= render "form", review: @review %>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- Navigation section -->
+  <div class="navigation-section">
+    <div class="nav-links">
+      <%= link_to "Back to reviews", reviews_path, class: "nav-link back-link" %>
+    </div>
+    <%= link_to "New bookshelf", new_bookshelf_path, class: "action-button bookshelf-link" %>
+  </div>
+</div>

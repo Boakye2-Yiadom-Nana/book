@@ -1,0 +1,57 @@
+<div class="bookshelf-show-container">
+  <!-- Success notice -->
+  <% if notice %>
+    <div class="notice">
+      <p><%= notice %></p>
+    </div>
+  <% end %>
+
+  <!-- Bookshelf details -->
+  <div class="bookshelf-card">
+    <%= render @bookshelf %>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- Reviews section -->
+  <div class="reviews-section">
+    <div class="reviews-header">
+      <h3 class="reviews-title">Reviews</h3>
+      <%= link_to "Add Review", new_review_path(bookshelf_id: @bookshelf.id), class: "btn-add-review" %>
+    </div>
+
+    <% if @bookshelf.reviews.any? %>
+      <% @bookshelf.reviews.each do |review| %>
+        <div class="review-card">
+          <div class="review-content">
+            "<%= review.content %>"
+          </div>
+          <div class="review-rating">
+            <span class="rating-stars">
+              <% review.rating.times do %>⭐<% end %>
+              <% (5 - review.rating).times do %>☆<% end %>
+            </span>
+            <span><strong>Rating:</strong> <%= review.rating %>/5</span>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="no-reviews">
+        <p>No reviews yet. Be the first to share your thoughts!</p>
+      </div>
+    <% end %>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- Actions section -->
+  <div class="actions-section">
+    <div class="action-links">
+      <%= link_to "Edit this bookshelf", edit_bookshelf_path(@bookshelf), class: "action-link edit-link" %>
+      <%= link_to "Back to bookshelves", bookshelves_path, class: "action-link back-link" %>
+    </div>
+    <%= link_to 'Delete', bookshelf_path(@bookshelf), 
+        data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },
+        class: 'btn-delete' %>
+  </div>
+</div>

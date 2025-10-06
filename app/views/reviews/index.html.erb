@@ -1,0 +1,42 @@
+<div class="reviews-index-container">
+  <!-- Success notice -->
+  <% if notice %>
+    <div class="notice">
+      <p><%= notice %></p>
+    </div>
+  <% end %>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <h1 class="page-title">Reviews</h1>
+    <p class="page-subtitle">Discover insights and opinions from our community of readers</p>
+    <%= link_to "Write New Review", new_review_path, class: "btn-new-review-header" %>
+  </div>
+
+  <!-- Reviews grid -->
+  <div class="reviews-grid" id="reviews">
+    <% if @reviews.any? %>
+      <% @reviews.each do |review| %>
+        <div class="review-card-wrapper">
+          <%= render review %>
+          <p>
+            <%= link_to "Show this review", review, class: "show-review-link" %>
+          </p>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="empty-reviews">
+        <h3>No Reviews Yet</h3>
+        <p>Be the first to share your thoughts about a book!</p>
+        <%= link_to "Write Your First Review", new_review_path, class: "btn-new-review-main" %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Bottom actions (only show if there are reviews) -->
+  <% if @reviews.any? %>
+    <div class="bottom-actions">
+      <%= link_to "Add Another Review", new_review_path, class: "btn-new-review-main" %>
+    </div>
+  <% end %>
+</div>
